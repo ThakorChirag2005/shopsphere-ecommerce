@@ -1,16 +1,114 @@
-# React + Vite
+# ShopSphere – E-commerce Storefront & Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ShopSphere is a responsive e-commerce web application built using React.js, Tailwind CSS, and Material UI.
 
-Currently, two official plugins are available:
+The project aims to provide a smooth online shopping experience for customers and an easy-to-use dashboard for store administrators.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Tech Stack
 
-## React Compiler
+- React.js
+- JavaScript
+- Tailwind CSS
+- Material UI (MUI)
+- React Router DOM
+- Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Project Modules
 
-## Expanding the ESLint configuration
+### Customer Storefront
+- Home page
+- Product listing and product details
+- Product search and filtering
+- Shopping cart and wishlist
+- Checkout with simulated order confirmation
+- Login and registration UI
+- Customer account and order history
+- Contact page
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Admin Dashboard
+- Dashboard overview and sales statistics
+- Product management
+- Category management
+- Inventory management
+- Order management
+- Customer management
+- Coupons and offers
+- Reviews management
+- Banner management
+- Reports and settings
+
+## 📁 Project Structure
+
+```text
+shopsphere/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── forms/
+│   │   ├── tables/
+│   │   └── layout/
+│   ├── layouts/
+│   ├── pages/
+│   │   ├── storefront/
+│   │   └── admin/
+│   ├── routes/
+│   ├── services/
+│   ├── hooks/
+│   ├── context/
+│   ├── data/
+│   ├── utils/
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+└── README.md
+```
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ThakorChirag2005/shopsphere-ecommerce.git
+```
+
+### 2. Navigate to the project folder
+
+```bash
+cd shopsphere-ecommerce
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+Open the local URL shown in your terminal to view the application.
+
+## 📱 Responsive Design
+
+The application is being developed to support desktop, tablet, and mobile screen sizes.
+
+## 📝 Project Information
+
+- Project Name: ShopSphere
+- Project Type: E-commerce Web Application
+- Development Status: In Progress
+- Frontend Framework: React.js
+- Build Tool: Vite
+
+## ⚠️ Note
+
+This is an internship project. It uses mock data and simulated checkout functionality. It does not require a real payment gateway or production backend.
+
+---
+
+**Developed as part of the SSV Infotech Internship Project.**
