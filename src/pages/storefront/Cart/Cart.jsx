@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../../context/CartContextValue";
 import { Link } from "react-router-dom";
 function Cart() {
   const { cartItems, addToCart, removeFromCart } =
@@ -47,7 +47,7 @@ function Cart() {
                     {item.name}
                   </h2>
 
-                  <p className="text-indigo-600 font-semibold mt-2">
+                  <p className="text-rose-800 font-semibold mt-2">
                     ₹{item.price}
                   </p>
 
@@ -119,14 +119,14 @@ function Cart() {
             <div className="flex justify-between text-lg font-bold">
               <span>Total</span>
 
-              <span className="text-indigo-600">
+              <span className="text-rose-800">
                 ₹{totalPrice}
               </span>
             </div>
 
             <Link
                  to="/checkout"
-                className="block text-center w-full mt-6 bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700"
+                className="block text-center w-full mt-6 bg-rose-900 text-white py-3 rounded-lg hover:bg-rose-950"
              >
                  Proceed to Checkout
                </Link>

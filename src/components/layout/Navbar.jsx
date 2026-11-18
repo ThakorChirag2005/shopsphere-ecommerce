@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../context/CartContextValue";
 
 function Navbar() {
   const { cartItems } = useContext(CartContext);
@@ -12,29 +12,47 @@ function Navbar() {
   );
 
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-white shadow-sm">
+    <nav className="flex flex-wrap items-center justify-between gap-4 px-8 py-4 bg-white shadow-sm">
 
-      <Link to="/" className="text-2xl font-bold text-indigo-600">
-        ShopSphere
+      {/* Logo */}
+      <Link to="/" className="text-2xl font-bold">
+        <span className="text-pink-600">Shop</span>
+        <span className="text-yellow-500">Sphere</span>
       </Link>
 
-      <div className="flex gap-6 text-gray-700">
+      {/* Navigation Links */}
+      <div className="flex flex-wrap gap-5 text-gray-700">
+
         <Link to="/">Home</Link>
+
         <Link to="/products">Products</Link>
-        <Link to="/categories">Categories</Link>
+
+        <Link to="/wishlist">Wishlist</Link>
+
+        <Link to="/orders">My Orders</Link>
+
+        <Link to="/account">My Account</Link>
+
+        <Link to="/contact">Contact</Link>
+
       </div>
 
+      {/* Cart and Authentication */}
       <div className="flex items-center gap-4">
+
         <Link to="/cart">
           Cart ({totalItems})
         </Link>
 
         <Link
           to="/login"
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+          className="bg-rose-900 text-white px-4 py-2 rounded-lg"
         >
           Login
         </Link>
+
+        
+
       </div>
 
     </nav>
