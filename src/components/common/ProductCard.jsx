@@ -11,36 +11,28 @@ function ProductCard({ product }) {
   const isWishlisted = wishlistItems.some((item) => item.id === product.id);
 
   return (
-    <article className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-200 hover:shadow-lg">
+    <article className="product-card group">
       <Link
         to={`/products/${product.id}`}
-        className="block overflow-hidden bg-slate-100"
+        className="product-card__image-link"
       >
         <img
           src={product.image}
           alt={product.name}
-          className="h-[236px] w-full bg-slate-100 object-contain p-3.5 transition duration-300 group-hover:scale-[1.035] max-[640px]:h-[250px]"
+          className="product-card__image"
         />
       </Link>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="product-card__content">
+        <p className="product-card__category">{product.category}</p>
         <Link to={`/products/${product.id}`}>
-          <h2 className="min-h-[1.4em] text-base font-bold tracking-tight text-slate-800 transition-colors hover:text-rose-800">
-            {product.name}
-          </h2>
+          <h2 className="product-card__name">{product.name}</h2>
         </Link>
 
-        <p className="mt-1 text-sm text-slate-500">
-          {product.category}
-        </p>
-
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <p className="text-lg font-bold tracking-tight text-slate-900">
-            ₹{product.price}
-          </p>
-
-          <p className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-sm font-semibold text-amber-800">
-            ⭐ {product.rating}
+        <div className="product-card__details">
+          <p className="product-card__price">₹{product.price}</p>
+          <p className="product-card__rating" aria-label={`Rated ${product.rating} out of 5`}>
+            <span aria-hidden="true">★</span> {product.rating}
           </p>
         </div>
 
@@ -48,24 +40,26 @@ function ProductCard({ product }) {
           type="button"
           onClick={() => addToCart(product)}
           aria-label={`Add ${product.name} to cart`}
-          className="mt-auto min-h-12 w-full rounded-xl border border-indigo-600 bg-gradient-to-br from-indigo-600 to-indigo-700 px-4 py-3 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-500 hover:from-indigo-700 hover:to-indigo-800 hover:shadow-md"
+          className="product-card__add"
         >
-          Add to Cart
+          Add to bag
         </button>
 
         <button
+          type="button"
           onClick={() =>
             isWishlisted
               ? removeFromWishlist(product.id)
               : addToWishlist(product)
           }
-          className={`mt-2.5 min-h-11 w-full rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors ${
+          aria-pressed={isWishlisted}
+          className={`product-card__wishlist ${
             isWishlisted
-              ? "border-rose-800 bg-rose-800 text-white hover:bg-rose-900"
-              : "border-rose-200 bg-white text-rose-800 hover:bg-rose-50"
+              ? "product-card__wishlist--active"
+              : ""
           }`}
         >
-          {isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+          {isWishlisted ? "Saved to wishlist" : "Save to wishlist"}
         </button>
       </div>
     </article>

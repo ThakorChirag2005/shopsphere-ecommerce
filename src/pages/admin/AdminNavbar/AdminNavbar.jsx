@@ -215,10 +215,10 @@ function AdminNavbar() {
   };
 
   return (
-    <header className="sticky top-0 z-30 flex min-h-[72px] w-full items-center justify-between gap-3 border-b border-rose-100/80 bg-white/95 px-3 py-3 shadow-[0_4px_20px_-18px_rgba(15,23,42,0.35)] backdrop-blur-xl sm:gap-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 flex min-h-[72px] w-full items-center justify-between gap-3 border-b border-white/10 bg-gradient-to-r from-rose-950 via-red-950 to-rose-900 px-3 py-3 shadow-lg shadow-rose-950/20 backdrop-blur-xl sm:gap-4 sm:px-6 lg:px-8">
       <div ref={searchRef} className="relative flex min-w-0 max-w-xl flex-1">
-        <div className="flex h-11 w-full items-center gap-3 rounded-xl border border-rose-100 bg-rose-50/40 px-3 text-slate-400 transition focus-within:border-rose-300 focus-within:bg-white focus-within:ring-4 focus-within:ring-rose-100/70 sm:px-4">
-          <Search size={19} className="shrink-0 text-slate-400" />
+        <div className="flex h-11 w-full items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-3 text-rose-100/75 transition focus-within:border-rose-200/60 focus-within:bg-white/15 focus-within:ring-4 focus-within:ring-rose-200/10 sm:px-4">
+          <Search size={19} className="shrink-0 text-rose-100/75" />
           <input
             type="search"
             value={query}
@@ -241,7 +241,7 @@ function AdminNavbar() {
             aria-label="Search admin pages and menu items"
             aria-expanded={isSearchOpen && query.trim().length > 0}
             aria-controls="admin-search-results"
-            className="min-h-0 min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-slate-800 outline-none placeholder:text-slate-400 focus:ring-0"
+            className="min-h-0 min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-white outline-none placeholder:text-rose-100/60 focus:ring-0"
           />
           {query && (
             <button
@@ -251,7 +251,7 @@ function AdminNavbar() {
                 setIsSearchOpen(true);
               }}
               aria-label="Clear search"
-              className="grid size-7 shrink-0 place-items-center rounded-lg text-slate-400 transition hover:bg-rose-100 hover:text-rose-700"
+              className="grid size-7 shrink-0 place-items-center rounded-lg text-rose-100/70 transition hover:bg-white/10 hover:text-white"
             >
               <X size={16} />
             </button>
@@ -311,7 +311,7 @@ function AdminNavbar() {
               setIsProfileOpen(false);
               setIsSearchOpen(false);
             }}
-            className="relative grid size-10 place-items-center rounded-xl text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
+            className="relative grid size-10 place-items-center rounded-xl text-rose-100/80 transition hover:bg-white/10 hover:text-white"
             aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ""}`}
             aria-expanded={isNotificationsOpen}
             aria-haspopup="true"
@@ -441,22 +441,22 @@ function AdminNavbar() {
             aria-label="Admin profile menu"
             aria-expanded={isProfileOpen}
             aria-haspopup="true"
-            className="flex items-center gap-2 rounded-xl p-1.5 text-left transition hover:bg-rose-50 sm:gap-3 sm:px-2"
+            className="flex items-center gap-2 rounded-xl p-1.5 text-left transition hover:bg-white/10 sm:gap-3 sm:px-2"
           >
             <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-rose-600 to-red-800 text-sm font-bold text-white shadow-md shadow-rose-200">
               {avatarLetter}
             </span>
             <span className="hidden min-w-0 text-left sm:block">
-              <span className="block max-w-32 truncate text-sm font-semibold text-slate-800">
+              <span className="block max-w-32 truncate text-sm font-semibold text-white">
                 {displayName}
               </span>
-              <span className="mt-0.5 block text-xs text-slate-400">
+              <span className="mt-0.5 block text-xs text-rose-100/70">
                 Administrator
               </span>
             </span>
             <ChevronDown
               size={16}
-              className={`hidden text-slate-400 transition-transform sm:block ${
+              className={`hidden text-rose-100/75 transition-transform sm:block ${
                 isProfileOpen ? "rotate-180" : ""
               }`}
             />

@@ -73,10 +73,10 @@ function Navbar() {
   };
 
   const getNavLinkClass = ({ isActive }) =>
-    `relative whitespace-nowrap py-2.5 text-sm font-semibold transition-colors after:absolute after:bottom-[3px] after:left-0 after:h-0.5 after:rounded after:bg-[#8a1c3a] after:content-[''] hover:text-[#8a1c3a] ${
+    `relative whitespace-nowrap py-2.5 text-sm font-semibold transition-colors after:absolute after:bottom-[3px] after:left-0 after:h-0.5 after:rounded after:bg-[#B8795B] after:content-[''] hover:text-[#B8795B] ${
       isActive
-        ? "text-[#8a1c3a] after:right-0 after:w-full"
-        : "text-slate-600 after:w-0"
+        ? "text-[#B8795B] after:right-0 after:w-full"
+        : "text-[#62594F] after:w-0"
     } max-[900px]:rounded-lg max-[900px]:px-2 max-[900px]:text-center max-[900px]:after:left-1/4 max-[900px]:after:right-1/4`;
 
   const handleSearchSubmit = (e) => {
@@ -99,8 +99,18 @@ function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
-      <div className="flex w-full flex-wrap items-center justify-between gap-3 px-4 py-3.5 sm:px-6 xl:gap-7 xl:px-8">
+    <header className="storefront-header sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+      <div className="storefront-header__notice">
+        <span className="storefront-header__notice-copy">The Everyday Edit</span>
+        <Link
+          to="/products"
+          className="storefront-header__notice-link"
+          onClick={closeMenus}
+        >
+          Explore the collection <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+      <div className="storefront-header__inner flex w-full flex-wrap items-center justify-between gap-3 px-4 py-3.5 sm:px-6 xl:gap-7 xl:px-8">
 
         {/* Store Logo */}
         <Link
@@ -109,12 +119,12 @@ function Navbar() {
           aria-label="ShopSphere home"
           onClick={closeMenus}
         >
-          <span className="grid size-[42px] place-items-center rounded-[14px] bg-gradient-to-br from-[#b4365b] to-[#741a37] font-serif text-2xl font-bold text-white shadow-lg shadow-rose-900/20 max-[560px]:size-9 max-[560px]:rounded-xl max-[560px]:text-xl">
+          <span className="storefront-brand__mark">
             S
           </span>
 
-          <span className="text-[1.32rem] font-extrabold tracking-[-0.06em] text-[#202638] max-[560px]:text-lg">
-            Shop<span className="text-[#8a1c3a]">Sphere</span>
+          <span className="storefront-brand__wordmark">
+            Shop<span>Sphere</span>
           </span>
         </Link>
 
@@ -144,8 +154,8 @@ function Navbar() {
               id="category-menu-button"
               className={`relative inline-flex min-h-0 items-center gap-0.5 rounded-none border-0 bg-transparent px-0 py-2.5 text-sm font-semibold shadow-none transition-colors hover:text-[#8a1c3a] max-[900px]:rounded-lg max-[900px]:px-2 max-[900px]:text-center ${
                 categoryRouteActive
-                  ? "text-[#8a1c3a] after:absolute after:bottom-[3px] after:left-0 after:right-0 after:h-0.5 after:w-full after:rounded after:bg-[#8a1c3a] after:content-['']"
-                  : "text-slate-600"
+                  ? "text-[#B8795B] after:absolute after:bottom-[3px] after:left-0 after:right-0 after:h-0.5 after:w-full after:rounded after:bg-[#B8795B] after:content-['']"
+                  : "text-[#62594F]"
               }`}
               aria-haspopup="menu"
               aria-expanded={categoryMenuOpen}
@@ -205,11 +215,11 @@ function Navbar() {
 
         {/* Search */}
         <form
-          className="relative order-none flex h-11 w-[clamp(220px,22vw,320px)] min-w-0 items-center rounded-full border border-[#e8e4e6] bg-[#f8f6f6] py-0 pl-3.5 pr-1.5 transition focus-within:border-[#d7a1b0] focus-within:bg-white focus-within:shadow-[0_0_0_4px_rgb(138_28_58_/_0.08)] max-[900px]:order-4 max-[900px]:w-full"
+          className="storefront-search relative order-none flex h-11 w-[clamp(220px,22vw,320px)] min-w-0 items-center rounded-full border border-[#e8e4e6] bg-[#f8f6f6] py-0 pl-3.5 pr-1.5 transition focus-within:border-[#d7a1b0] focus-within:bg-white focus-within:shadow-[0_0_0_4px_rgb(184_121_91_/_0.10)] max-[900px]:order-4 max-[900px]:w-full"
           role="search"
           onSubmit={handleSearchSubmit}
         >
-          <SearchRounded className="shrink-0 text-xl text-[#8a1c3a]" />
+          <SearchRounded className="shrink-0 text-xl text-[#B8795B]" />
 
           <input
             type="search"
@@ -230,7 +240,7 @@ function Navbar() {
 
           <button
             type="submit"
-            className="grid size-[34px] min-h-0 shrink-0 place-items-center rounded-full border-0 bg-[#8a1c3a] p-0 text-white transition hover:scale-105 hover:bg-[#64152b]"
+            className="grid size-[34px] min-h-0 shrink-0 place-items-center rounded-full border-0 bg-[#B8795B] p-0 text-white transition hover:scale-105 hover:bg-[#9B5D43]"
             aria-label="Search"
           >
             <SearchRounded />
@@ -253,7 +263,7 @@ function Navbar() {
                           <strong>{product.name}</strong>
                           <small>{product.category}</small>
                         </span>
-                        <span className="whitespace-nowrap text-sm font-bold text-[#8a1c3a]">
+                        <span className="whitespace-nowrap text-sm font-bold text-[#B8795B]">
                           ₹{product.price}
                         </span>
                       </Link>
@@ -270,7 +280,7 @@ function Navbar() {
         </form>
 
         {/* Header Actions */}
-        <div className="order-none flex items-center gap-2 max-[900px]:order-2 max-[900px]:ml-auto max-[560px]:gap-0.5">
+        <div className="storefront-header__actions order-none flex items-center gap-2 max-[900px]:order-2 max-[900px]:ml-auto max-[560px]:gap-0.5">
 
           {/* Admin Dashboard Button */}
           <NavLink
@@ -278,8 +288,8 @@ function Navbar() {
             className={({ isActive }) =>
               `inline-flex h-[42px] items-center gap-1.5 rounded-full border px-3 text-sm font-semibold transition max-[560px]:size-[38px] max-[560px]:justify-center max-[560px]:px-0 ${
                 isActive
-                  ? "border-rose-200 bg-rose-50 text-[#8a1c3a]"
-                  : "border-rose-100 bg-[#8a1c3a] text-white hover:bg-[#64152b]"
+                  ? "border-rose-200 bg-rose-50 text-[#B8795B]"
+                  : "border-rose-100 bg-[#B8795B] text-white hover:bg-[#9B5D43]"
               }`
             }
             title="Admin Dashboard"
@@ -398,7 +408,7 @@ function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="order-none hidden size-[42px] min-h-0 place-items-center rounded-[13px] border border-rose-100 bg-white text-[#8a1c3a] max-[900px]:order-3 max-[900px]:grid max-[560px]:size-[38px]"
+          className="storefront-menu-toggle order-none hidden size-[42px] min-h-0 place-items-center rounded-[13px] border border-rose-100 bg-white text-[#B8795B] max-[900px]:order-3 max-[900px]:grid max-[560px]:size-[38px]"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
           aria-controls="primary-navigation"

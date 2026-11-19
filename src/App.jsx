@@ -81,7 +81,7 @@ function AppContent() {
   const isAdminPage = location.pathname.startsWith("/admin");
 
   return (
-    <>
+    <div className={isAdminPage ? undefined : "storefront"}>
       {!isAdminPage && <Navbar />}
 
       <Routes>
@@ -124,7 +124,7 @@ function AppContent() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

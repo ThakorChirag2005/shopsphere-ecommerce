@@ -1,8 +1,8 @@
 # ShopSphere – E-commerce Storefront & Admin Dashboard
 
-ShopSphere is a responsive e-commerce web application built using React.js, Tailwind CSS, and Material UI.
+ShopSphere is a responsive e-commerce web application built using React.js, Tailwind CSS, and Material UI (MUI).
 
-The project aims to provide a smooth online shopping experience for customers and an easy-to-use dashboard for store administrators.
+It provides a user-friendly online shopping experience for customers and an easy-to-use dashboard for store administrators.
 
 ## 🚀 Tech Stack
 
@@ -12,13 +12,17 @@ The project aims to provide a smooth online shopping experience for customers an
 - Material UI (MUI)
 - React Router DOM
 - Vite
+- React Context API
+- LocalStorage
+- ApexCharts
 
-## ✨ Project Modules
+## ✨ Project Features
 
 ### Customer Storefront
-- Home page
+
+- Responsive home page
 - Product listing and product details
-- Product search and filtering
+- Product search, filtering, and sorting
 - Shopping cart and wishlist
 - Checkout with simulated order confirmation
 - Login and registration UI
@@ -26,8 +30,9 @@ The project aims to provide a smooth online shopping experience for customers an
 - Contact page
 
 ### Admin Dashboard
+
 - Dashboard overview and sales statistics
-- Product management
+- Product management (Add, View, Edit, Delete)
 - Category management
 - Inventory management
 - Order management
@@ -36,6 +41,21 @@ The project aims to provide a smooth online shopping experience for customers an
 - Reviews management
 - Banner management
 - Reports and settings
+
+## 🧩 React Concepts Used
+
+- Functional components and JSX
+- React Hooks: useState and useEffect
+- useMemo and useCallback where appropriate
+- React Context API for shared state
+- React Router for navigation
+- Custom Hooks:
+  - useLocalStorage
+  - useDebounce
+- Conditional rendering
+- Reusable components
+- Search, filtering, sorting, and pagination
+- Protected admin routes
 
 ## 📁 Project Structure
 
@@ -76,7 +96,7 @@ git clone https://github.com/ThakorChirag2005/shopsphere-ecommerce.git
 ### 2. Navigate to the project folder
 
 ```bash
-cd shopsphere-ecommerce
+cd shopsphere
 ```
 
 ### 3. Install dependencies
@@ -91,38 +111,44 @@ npm install
 npm run dev
 ```
 
-Open the local URL shown in your terminal to view the application.
+Open the local URL displayed in the terminal to view the application.
 
 ## 📱 Responsive Design
 
-The application is being developed to support desktop, tablet, and mobile screen sizes.
+The storefront and admin interface are designed to support:
 
-## 🧩 State and Data Flow
+- Desktop screens
+- Tablet screens
+- Mobile screens
 
-- Shared cart and wishlist state is managed with React Context API.
-- Demo accounts, orders, products, inventory, categories and settings persist in browser `localStorage`.
-- Admin product and inventory updates synchronize with storefront product data.
-- Orders placed through checkout appear in customer orders and the admin order module.
-- No real backend, payment gateway, email service or production authentication is used.
+## 🔄 State Management and Data Flow
+
+- React Context API is used to share cart and wishlist state across components without prop drilling.
+- LocalStorage is used to persist supported application data across page refreshes.
+- Custom hooks help reuse LocalStorage and debounced-value logic.
+- Product and order updates are reflected in the relevant storefront and admin interfaces through the application's data flow.
 
 ## 🔐 Demo Admin Credentials
 
 - Email: `admin@shopsphere.com`
 - Password: `admin123`
 
-Use these credentials only for the frontend demo.
+These credentials are provided only for frontend demonstration purposes.
+
+## ⚠️ Project Limitations
+
+- This project uses mock data and browser LocalStorage.
+- Checkout is simulated; no real payment information is collected or processed.
+- No production backend or real payment gateway is integrated.
+- Authentication and admin route protection are frontend demonstrations, not production security.
 
 ## 📝 Project Information
 
-- Project Name: ShopSphere
-- Project Type: E-commerce Web Application
-- Development Status: In Progress
-- Frontend Framework: React.js
-- Build Tool: Vite
-
-## ⚠️ Note
-
-This is an internship project. It uses mock data and simulated checkout functionality. It does not require a real payment gateway or production backend.
+- **Project Name:** ShopSphere
+- **Project Type:** E-commerce Web Application
+- **Frontend Framework:** React.js
+- **Build Tool:** Vite
+- **Project Purpose:** SSV Infotech Internship Project
 
 ---
 

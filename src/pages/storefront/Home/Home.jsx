@@ -1,4 +1,4 @@
-
+import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getStoreProducts } from "../../../data/products";
 
@@ -11,196 +11,172 @@ function Home() {
   const featuredProducts = storeProducts.slice(0, 4);
 
   return (
-    <div className="bg-[#fffaf7]">
-
-      <section className="px-6 py-16 md:px-12 lg:px-20">
-
-        <div className="grid items-center gap-12 rounded-3xl bg-gradient-to-r from-rose-100 via-pink-50 to-orange-50 p-8 md:p-14 lg:grid-cols-2">
-
-          {/* Left Content */}
-          <div>
-
-            <span className="inline-block rounded-full bg-white px-4 py-2 text-sm font-semibold text-rose-700 shadow-sm">
-              ✨ New Collection 2026
-            </span>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight text-gray-900 md:text-6xl">
-              Discover Your
-              <span className="block text-rose-700">
-                Perfect Style
-              </span>
-            </h1>
-
-            <p className="mt-6 max-w-lg text-base leading-7 text-gray-600 md:text-lg">
-              Explore our exclusive collection of premium products.
-              Find your favorites and enjoy shopping with ShopSphere.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-
-              <button
-                onClick={() => navigate("/products")}
-                className="rounded-xl bg-rose-700 px-7 py-3.5 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-rose-800"
-              >
-                Shop Now →
-              </button>
-
-              <button
-                onClick={() => navigate("/products")}
-                className="rounded-xl border border-rose-700 px-7 py-3.5 font-semibold text-rose-700 transition hover:bg-rose-700 hover:text-white"
-              >
-                Explore Collection
-              </button>
-
-            </div>
-
-            <div className="mt-10 flex gap-8">
-
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">
-                  10K+
-                </h3>
-                <p className="text-sm text-gray-500">
-                  Happy Customers
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">
-                  500+
-                </h3>
-                <p className="text-sm text-gray-500">
-                  Premium Products
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Right Image */}
-          <div className="relative">
-
-            <div className="absolute -right-4 -top-4 h-32 w-32 rounded-full bg-rose-200 blur-2xl">
-            </div>
-
-            <img
-              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900"
-              alt="ShopSphere Shopping Collection"
-              className="relative h-[350px] w-full rounded-3xl object-cover shadow-2xl md:h-[480px]"
-            />
-
-            <div className="absolute bottom-6 left-6 rounded-xl bg-white/90 px-5 py-4 shadow-lg backdrop-blur">
-              <p className="text-sm font-semibold text-gray-500">
-                Your Style, Your Choice
-              </p>
-              <h3 className="mt-1 text-lg font-bold text-rose-700">
-                Shop the Latest Trends
-              </h3>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section className="mx-auto w-full max-w-[1240px] px-5 py-10 sm:px-8">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-rose-700">
-              Shop by category
-            </p>
-            <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-              Explore popular collections
-            </h2>
+    <main className="home-page">
+      <section className="editorial-hero">
+        <div className="editorial-hero__copy">
+          <p className="editorial-eyebrow">
+            <span />
+            The art of everyday living
+          </p>
+          <h1>
+            Made for the
+            <br />
+            <em>way you live.</em>
+          </h1>
+          <p className="editorial-hero__description">
+            Thoughtful finds, timeless essentials, and little things that make
+            every day feel a little more considered.
+          </p>
+          <button
+            type="button"
+            className="editorial-button"
+            onClick={() => navigate("/products")}
+          >
+            Discover the collection <ArrowRight size={17} aria-hidden="true" />
+          </button>
+          <div className="editorial-hero__note">
+            <span>01</span>
+            <span>Curated with intention</span>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() =>
-                navigate(`/products?category=${encodeURIComponent(category)}`)
-              }
-              className="min-h-24 rounded-2xl border border-rose-100 bg-white p-5 text-left font-bold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-rose-300 hover:text-rose-800 hover:shadow-lg"
-            >
-              {category}
-            </button>
-          ))}
+
+        <div className="editorial-hero__visual">
+          <img
+            src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=2400&q=90"
+            alt="A premium fashion boutique and shopping experience"
+          />
+          <div className="editorial-hero__image-caption">
+            <span>THE NEW SEASON</span>
+            <strong>Quietly, beautifully you.</strong>
+          </div>
+          <div className="editorial-hero__seal" aria-hidden="true">
+            <span>SHOPSPHERE</span>
+            <ArrowDownRight size={18} />
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1240px] px-5 py-10 sm:px-8">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <section className="home-categories">
+        <div className="section-heading">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-rose-700">
-              Featured
+            <p className="editorial-eyebrow">
+              <span />
+              A world of good things
             </p>
-            <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-              Customer favorites
-            </h2>
+            <h2>Find your next favorite.</h2>
           </div>
           <button
             type="button"
+            className="text-link"
             onClick={() => navigate("/products")}
-            className="rounded-lg text-sm font-bold text-rose-700 hover:underline"
           >
-            View all products
+            View all categories <ArrowRight size={16} aria-hidden="true" />
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="category-grid">
+          {categories.map((category, index) => {
+            const image = storeProducts.find(
+              (product) => product.category === category
+            )?.image;
+
+            return (
+              <button
+                key={category}
+                type="button"
+                className="category-tile"
+                onClick={() =>
+                  navigate(`/products?category=${encodeURIComponent(category)}`)
+                }
+              >
+                {image && <img src={image} alt="" />}
+                <span className="category-tile__number">
+                  0{index + 1}
+                </span>
+                <span className="category-tile__name">{category}</span>
+                <ArrowRight
+                  className="category-tile__arrow"
+                  size={18}
+                  aria-hidden="true"
+                />
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="home-featured">
+        <div className="section-heading">
+          <div>
+            <p className="editorial-eyebrow">
+              <span />
+              Chosen for you
+            </p>
+            <h2>The pieces we keep close.</h2>
+          </div>
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => navigate("/products")}
+          >
+            Explore all pieces <ArrowRight size={16} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="featured-grid">
           {featuredProducts.map((product) => (
             <button
               key={product.id}
               type="button"
               onClick={() => navigate(`/products/${product.id}`)}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="featured-card"
             >
-              {product.image ? (
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-44 w-full object-contain p-3"
-                />
-              ) : (
-                <div className="grid h-44 place-items-center bg-slate-100 text-slate-400">
-                  No image
-                </div>
-              )}
-              <div className="p-4">
-                <p className="font-bold text-slate-800">{product.name}</p>
-                <p className="mt-1 text-sm text-slate-500">{product.category}</p>
-                <p className="mt-3 font-bold text-rose-800">₹{product.price}</p>
-              </div>
+              <span className="featured-card__image">
+                {product.image ? (
+                  <img src={product.image} alt={product.name} />
+                ) : (
+                  <span className="featured-card__no-image">No image</span>
+                )}
+              </span>
+              <span className="featured-card__meta">
+                <span>{product.category}</span>
+                <span>₹{product.price}</span>
+              </span>
+              <span className="featured-card__name">{product.name}</span>
             </button>
           ))}
         </div>
       </section>
 
-      <section className="bg-rose-900 px-5 py-8 text-white sm:px-8">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-4 text-center sm:grid-cols-3">
+      <section className="home-promise">
+        <p className="editorial-eyebrow">
+          <span />
+          A little more considered
+        </p>
+        <h2>Good things, made easy.</h2>
+        <div className="promise-grid">
           <div>
-            <p className="text-lg font-bold">Secure demo checkout</p>
-            <p className="mt-1 text-sm text-rose-100">No real payment required</p>
+            <span>01</span>
+            <h3>Thoughtful selection</h3>
+            <p>Everyday favorites chosen with care, all in one place.</p>
           </div>
           <div>
-            <p className="text-lg font-bold">Easy returns</p>
-            <p className="mt-1 text-sm text-rose-100">Simple shopping experience</p>
+            <span>02</span>
+            <h3>Easy by design</h3>
+            <p>A simple, secure checkout and a smoother way to shop.</p>
           </div>
           <div>
-            <p className="text-lg font-bold">ShopSphere support</p>
-            <p className="mt-1 text-sm text-rose-100">We are happy to help</p>
+            <span>03</span>
+            <h3>Here to help</h3>
+            <p>Questions along the way? Our team is always happy to help.</p>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 bg-white px-5 py-5 text-center text-sm text-slate-500">
-        © 2026 ShopSphere. All rights reserved.
+      <footer className="storefront-footer">
+        <span className="storefront-footer__brand">ShopSphere</span>
+        <span>Considered finds for everyday living.</span>
+        <span>© 2026 ShopSphere. All rights reserved.</span>
       </footer>
-
-    </div>
+    </main>
   );
 }
 
