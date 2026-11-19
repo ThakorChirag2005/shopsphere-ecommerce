@@ -23,9 +23,28 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setSuccessMessage(
-      "Your message has been submitted successfully!"
-    );
+    try {
+      const savedMessages = localStorage.getItem("contactMessages");
+      const messages = savedMessages ? JSON.parse(savedMessages) : [];
+      const safeMessages = Array.isArray(messages) ? messages : [];
+
+      localStorage.setItem(
+        "contactMessages",
+        JSON.stringify([
+          ...safeMessages,
+          { ...formData, id: Date.now(), createdAt: new Date().toISOString() },
+        ])
+      );
+      setSuccessMessage(
+        "Your message has been submitted successfully!"
+      );
+    } catch (error) {
+      console.error("Unable to save contact message:", error);
+      setSuccessMessage(
+        "We could not save your message. Please try again."
+      );
+      return;
+    }
 
     setFormData({
       name: "",

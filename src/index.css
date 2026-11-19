@@ -1,1 +1,42 @@
 @import "tailwindcss";
+
+@layer base {
+  html {
+    background:
+      radial-gradient(ellipse at 50% -20%, rgb(247 230 236 / 55%), transparent 48%),
+      #f7f8fc;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    color: #172033;
+    background:
+      radial-gradient(ellipse at 50% -20%, rgb(247 230 236 / 55%), transparent 48%),
+      #f7f8fc;
+    font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :where(button, a, input, select, textarea):focus-visible {
+    outline: 3px solid rgb(138 28 58 / 28%);
+    outline-offset: 3px;
+  }
+}

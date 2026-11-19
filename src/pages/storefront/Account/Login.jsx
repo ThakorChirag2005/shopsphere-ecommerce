@@ -1,16 +1,18 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleChange = (e) => {
+    setMessage({ type: "", text: "" });
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -20,7 +22,71 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setMessage("Login submitted successfully! ");
+    try {
+      const savedUsers = localStorage.getItem("users");
+      const users = savedUsers ? JSON.parse(savedUsers) : [];
+
+      if (!Array.isArray(users)) {
+        throw new Error("Saved users must be an array.");
+      }
+
+      const email = formData.email.trim().toLowerCase();
+      if (
+        email === "admin@shopsphere.com" &&
+        formData.password === "admin123"
+      ) {
+        const demoAdmin = {
+          id: "demo-admin",
+          name: "ShopSphere Admin",
+          email,
+          phone: "",
+          role: "admin",
+        };
+        localStorage.setItem("currentUser", JSON.stringify(demoAdmin));
+        setMessage({
+          type: "success",
+          text: "Admin login successful!",
+        });
+        navigate("/admin/dashboard", { replace: true });
+        return;
+      }
+
+      const user = users.find(
+        (savedUser) =>
+          savedUser &&
+          typeof savedUser.email === "string" &&
+          savedUser.email.trim().toLowerCase() === email
+      );
+
+      if (!user || user.password !== formData.password) {
+        setMessage({
+          type: "error",
+          text: "Invalid email or password. Please try again.",
+        });
+        return;
+      }
+
+      const currentUser = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone || "",
+        role: user.role || "customer",
+      };
+
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      setMessage({
+        type: "success",
+        text: "Login successful! You are now signed in.",
+      });
+      navigate("/account", { replace: true });
+    } catch (error) {
+      console.error("Unable to sign in with the saved account.", error);
+      setMessage({
+        type: "error",
+        text: "We could not read or save your demo account. Please try again.",
+      });
+    }
   };
 
   return (
@@ -86,9 +152,14 @@ function Login() {
             Login
           </button>
 
-          {message && (
-            <p className="text-center text-green-600">
-              {message}
+          {message.text && (
+            <p
+              role="status"
+              className={`text-center ${
+                message.type === "success" ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {message.text}
             </p>
           )}
 

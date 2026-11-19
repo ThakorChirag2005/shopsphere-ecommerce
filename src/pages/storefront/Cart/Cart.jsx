@@ -2,62 +2,76 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContextValue";
 import { Link } from "react-router-dom";
+
+const SHIPPING_CHARGE = 50;
+const TAX_RATE = 0.05;
+
 function Cart() {
   const { cartItems, addToCart, removeFromCart } =
     useContext(CartContext);
 
-  // Calculate Total Price
-  const totalPrice = cartItems.reduce(
+  const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+  const shipping = cartItems.length > 0 ? SHIPPING_CHARGE : 0;
+  const tax = subtotal * TAX_RATE;
+  const orderTotal = subtotal + shipping + tax;
 
   return (
-    <div className="px-8 py-10">
+    <div className="mx-auto w-full max-w-[1280px] px-5 py-9 sm:px-8 sm:py-12">
 
-      <h1 className="text-3xl font-bold mb-8">
+      <h1 className="mb-8 text-3xl font-bold tracking-tight text-slate-900">
         Shopping Cart
       </h1>
 
       {cartItems.length === 0 ? (
-        <p className="text-gray-500 text-lg">
-          Your cart is empty.
-        </p>
+        <div className="rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm">
+          <p className="text-lg text-slate-500">Your cart is empty.</p>
+          <Link
+            to="/products"
+            className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-rose-900 px-6 py-3 font-semibold text-white transition hover:bg-rose-950"
+          >
+            Browse Products
+          </Link>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
 
           {/* Cart Products */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="space-y-4 lg:col-span-2">
 
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col sm:flex-row items-center gap-5 bg-white p-4 rounded-xl shadow-md"
+                className="flex min-w-0 flex-col items-center gap-5 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:flex-row sm:p-5"
               >
 
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-28 h-28 object-cover rounded-lg"
+                  className="size-28 shrink-0 rounded-xl bg-slate-100 object-cover"
                 />
 
                 <div className="flex-1">
 
-                  <h2 className="text-lg font-bold">
+                  <h2 className="text-lg font-bold text-slate-900">
                     {item.name}
                   </h2>
 
-                  <p className="text-rose-800 font-semibold mt-2">
+                  <p className="mt-2 font-semibold text-rose-800">
                     ₹{item.price}
                   </p>
 
                   {/* Quantity */}
-                  <div className="flex items-center gap-3 mt-3">
+                  <div className="mt-3 flex items-center gap-3">
 
                     <button
+                      type="button"
                       onClick={() => addToCart(item, -1)}
                       disabled={item.quantity === 1}
-                      className="px-3 py-1 bg-gray-200 rounded disabled:opacity-40"
+                      aria-label={`Decrease quantity of ${item.name}`}
+                      className="grid size-9 min-h-0 place-items-center rounded-lg bg-slate-100 px-2 text-slate-700 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       -
                     </button>
@@ -67,8 +81,10 @@ function Cart() {
                     </span>
 
                     <button
+                      type="button"
                       onClick={() => addToCart(item, 1)}
-                      className="px-3 py-1 bg-gray-200 rounded"
+                      aria-label={`Increase quantity of ${item.name}`}
+                      className="grid size-9 min-h-0 place-items-center rounded-lg bg-slate-100 px-2 text-slate-700 transition hover:bg-slate-200"
                     >
                       +
                     </button>
@@ -77,15 +93,17 @@ function Cart() {
 
                 </div>
 
-                <div className="text-right">
+                <div className="shrink-0 text-right">
 
                   <p className="font-bold">
                     ₹{item.price * item.quantity}
                   </p>
 
                   <button
+                    type="button"
                     onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 mt-3 hover:text-red-700"
+                    aria-label={`Remove ${item.name} from cart`}
+                    className="mt-3 font-medium text-red-600 transition hover:text-red-700"
                   >
                     Remove
                   </button>
@@ -98,7 +116,7 @@ function Cart() {
           </div>
 
           {/* Order Summary */}
-          <div className="bg-white p-6 rounded-xl shadow-md h-fit">
+          <div className="h-fit rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
 
             <h2 className="text-xl font-bold mb-5">
               Order Summary
@@ -106,27 +124,32 @@ function Cart() {
 
             <div className="flex justify-between mb-3">
               <span>Subtotal</span>
-              <span>₹{totalPrice}</span>
+              <span>₹{subtotal.toFixed(2)}</span>
             </div>
 
             <div className="flex justify-between mb-3">
-              <span>Shipping</span>
-              <span>Free</span>
+              <span>Estimated shipping</span>
+              <span>₹{shipping.toFixed(2)}</span>
             </div>
 
-            <hr className="my-4" />
+            <div className="flex justify-between mb-3">
+              <span>Estimated tax (5%)</span>
+              <span>₹{tax.toFixed(2)}</span>
+            </div>
+
+            <hr className="my-4 border-slate-200" />
 
             <div className="flex justify-between text-lg font-bold">
-              <span>Total</span>
+              <span>Order total</span>
 
               <span className="text-rose-800">
-                ₹{totalPrice}
+                ₹{orderTotal.toFixed(2)}
               </span>
             </div>
 
             <Link
                  to="/checkout"
-                className="block text-center w-full mt-6 bg-rose-900 text-white py-3 rounded-lg hover:bg-rose-950"
+                className="mt-6 block min-h-12 w-full rounded-xl bg-rose-900 py-3 text-center font-semibold text-white transition hover:bg-rose-950"
              >
                  Proceed to Checkout
                </Link>

@@ -49,3 +49,32 @@ export const products = [
     rating: 4.1,
   },
 ];
+
+export function getStoreProducts() {
+  try {
+    const savedProducts = localStorage.getItem("adminProducts");
+    if (!savedProducts) {
+      return products.map((product) => ({
+        ...product,
+        stock: 25,
+      }));
+    }
+
+    const parsedProducts = JSON.parse(savedProducts);
+    if (!Array.isArray(parsedProducts)) {
+      return products;
+    }
+
+    return parsedProducts.map((product) => ({
+      ...product,
+      id: Number(product.id),
+      price: Number(product.price),
+      stock: Number(product.stock || 0),
+      rating: Number(product.rating || 4),
+      image: product.image || "",
+    }));
+  } catch (error) {
+    console.error("Unable to load storefront products:", error);
+    return products;
+  }
+}

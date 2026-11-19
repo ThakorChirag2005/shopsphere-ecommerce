@@ -4,12 +4,47 @@ import { Link } from "react-router-dom";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setMessage({ type: "", text: "" });
 
-    setMessage("Password reset link sent successfully! (Demo)");
+    try {
+      const savedUsers = localStorage.getItem("users");
+      const users = savedUsers ? JSON.parse(savedUsers) : [];
+
+      if (!Array.isArray(users)) {
+        throw new Error("Saved users must be an array.");
+      }
+
+      const normalizedEmail = email.trim().toLowerCase();
+      const accountExists = users.some(
+        (user) =>
+          user &&
+          typeof user.email === "string" &&
+          user.email.trim().toLowerCase() === normalizedEmail
+      );
+
+      if (!accountExists) {
+        setMessage({
+          type: "error",
+          text: "No ShopSphere account was found with this email.",
+        });
+        return;
+      }
+
+      setMessage({
+        type: "success",
+        text: "Password reset request received. This is a demo; no email was sent.",
+      });
+    } catch (error) {
+      console.error("Unable to check the demo account.", error);
+      setMessage({
+        type: "error",
+        text: "We could not check your demo account. Please try again.",
+      });
+    }
   };
 
   return (
@@ -33,9 +68,14 @@ function ForgotPassword() {
 
             <input
               type="email"
+              name="email"
+              autoComplete="email"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setMessage({ type: "", text: "" });
+              }}
               required
               className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-rose-800"
             />
@@ -48,9 +88,14 @@ function ForgotPassword() {
             Reset Password
           </button>
 
-          {message && (
-            <p className="text-center text-green-600">
-              {message}
+          {message.text && (
+            <p
+              role="status"
+              className={`text-center ${
+                message.type === "success" ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {message.text}
             </p>
           )}
 

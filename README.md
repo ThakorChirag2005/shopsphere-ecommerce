@@ -97,6 +97,21 @@ Open the local URL shown in your terminal to view the application.
 
 The application is being developed to support desktop, tablet, and mobile screen sizes.
 
+## 🧩 State and Data Flow
+
+- Shared cart and wishlist state is managed with React Context API.
+- Demo accounts, orders, products, inventory, categories and settings persist in browser `localStorage`.
+- Admin product and inventory updates synchronize with storefront product data.
+- Orders placed through checkout appear in customer orders and the admin order module.
+- No real backend, payment gateway, email service or production authentication is used.
+
+## 🔐 Demo Admin Credentials
+
+- Email: `admin@shopsphere.com`
+- Password: `admin123`
+
+Use these credentials only for the frontend demo.
+
 ## 📝 Project Information
 
 - Project Name: ShopSphere
