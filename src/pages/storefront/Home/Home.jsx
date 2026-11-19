@@ -9,6 +9,11 @@ function Home() {
     ...new Set(storeProducts.map((product) => product.category)),
   ].slice(0, 4);
   const featuredProducts = storeProducts.slice(0, 4);
+  const heroProducts = [
+    storeProducts.find((product) => /watch/i.test(product.name)),
+    storeProducts.find((product) => /sunglasses/i.test(product.name)),
+    storeProducts.find((product) => /bag|backpack/i.test(product.name)),
+  ].filter(Boolean);
 
   return (
     <main className="home-page">
@@ -41,10 +46,16 @@ function Home() {
         </div>
 
         <div className="editorial-hero__visual">
-          <img
-            src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=2400&q=90"
-            alt="A premium fashion boutique and shopping experience"
-          />
+          <div className="editorial-hero__collage">
+            {heroProducts.map((product, index) => (
+              <div
+                key={product.id}
+                className={`hero-product hero-product--${index + 1}`}
+              >
+                <img src={product.image} alt={product.name} />
+              </div>
+            ))}
+          </div>
           <div className="editorial-hero__image-caption">
             <span>THE NEW SEASON</span>
             <strong>Quietly, beautifully you.</strong>

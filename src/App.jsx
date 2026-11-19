@@ -31,7 +31,7 @@ import Customers from "./pages/admin/Customers/Customers";
 import Coupons from "./pages/admin/Coupons/Coupons";
 import Reviews from "./pages/admin/Reviews/Reviews";
 import Banners from "./pages/admin/Banners/Banners";
-import Reports from "./pages/admin/Reports/Reports";
+import Reports from "./pages/admin/Products/Reports/Reports";
 import Settings from "./pages/admin/Settings/Settings";
 
 
