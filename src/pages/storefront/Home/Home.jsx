@@ -1,6 +1,7 @@
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getStoreProducts } from "../../../data/products";
+import sageGreenBanner from "../../../assets/sage-green-home-banner.png";
 
 function Home() {
   const navigate = useNavigate();
@@ -9,11 +10,6 @@ function Home() {
     ...new Set(storeProducts.map((product) => product.category)),
   ].slice(0, 4);
   const featuredProducts = storeProducts.slice(0, 4);
-  const heroProducts = [
-    storeProducts.find((product) => /watch/i.test(product.name)),
-    storeProducts.find((product) => /sunglasses/i.test(product.name)),
-    storeProducts.find((product) => /bag|backpack/i.test(product.name)),
-  ].filter(Boolean);
 
   return (
     <main className="home-page">
@@ -46,16 +42,11 @@ function Home() {
         </div>
 
         <div className="editorial-hero__visual">
-          <div className="editorial-hero__collage">
-            {heroProducts.map((product, index) => (
-              <div
-                key={product.id}
-                className={`hero-product hero-product--${index + 1}`}
-              >
-                <img src={product.image} alt={product.name} />
-              </div>
-            ))}
-          </div>
+          <img
+            className="editorial-hero__banner"
+            src={sageGreenBanner}
+            alt="Curated shopping still life in sage green"
+          />
           <div className="editorial-hero__image-caption">
             <span>THE NEW SEASON</span>
             <strong>Quietly, beautifully you.</strong>
